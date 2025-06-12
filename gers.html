@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative assignment</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #89a8b3;
+            margin: 0;
+        }
+        .arrow {
+            width: 0;
+            height: 0;
+            border-top: 40px solid transparent;
+            border-bottom: 40px solid transparent;
+            border-left: 60px solid #e0e410;
+            position: relative;
+            transition: transform 2s ease-in-out, left 2s ease-in-out;
+            position: absolute;
+            left: 50px;
+        }
+        .animate {
+            transform: translateX(1200px) rotate(360deg);
+        }
+        button {
+            position: absolute;
+            bottom: 20px;
+            padding: 10px 20px;
+           background-color: aquamarine;
+            color: rgb(3, 84, 57);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="arrow" id="arrow"></div>
+<button id="animateBtn">Magic</button>
+
+<script>
+    const arrow = document.getElementById('arrow');
+    const btn = document.getElementById('animateBtn');
+
+    // Restore animation state from localStorage
+    window.onload = function() {
+        const state = localStorage.getItem('arrowAnimated');
+        if (state === 'true') {
+            arrow.classList.add('animate');
+        }
+    }
+
+    btn.addEventListener('click', function() {
+        arrow.classList.toggle('animate');
+
+        // Save the state to localStorage
+        const animated = arrow.classList.contains('animate');
+        localStorage.setItem('arrowAnimated', animated);
+    });
+</script>
+
+</body>
+</html>
